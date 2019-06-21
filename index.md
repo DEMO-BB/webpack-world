@@ -91,3 +91,12 @@ https://www.cnblogs.com/lalalagq/p/9809174.html
 * css打包
 * clean代码
 * hashedModuleIdsPlugin失效
+
+webpack 4 的Code Splitting 它最大的特点就是配置简单，如果你的 mode 是 production，那么 webpack 4 就会自动开启 Code Splitting。
+它内置的代码分割策略是这样的：
+
+新的 chunk 是否被共享或者是来自 node_modules 的模块
+新的 chunk 体积在压缩之前是否大于 30kb
+按需加载 chunk 的并发请求数量小于等于 5 个
+页面初始加载时的并发请求数量小于等于 3 个
+https://www.jianshu.com/p/23dcabf35744

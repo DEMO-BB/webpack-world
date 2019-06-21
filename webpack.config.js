@@ -5,6 +5,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 
 const commonOptions = {
   chunks: 'all',
@@ -43,8 +44,15 @@ module.exports = {
     //   hashDigest: 'hex',
     //   hashDigestLength: 20
     // }),// 用来缓存打包文件的hash，仅仅改变需要改变的文件hash名
+    
+    // 注意一定要在HtmlWebpackPlugin之后引用
+    // inline 的name 和你 runtimeChunk 的 name保持一致
+    new ScriptExtHtmlWebpackPlugin({
+      //`runtime` must same as runtimeChunk name. default is `runtime`
+      inline: /manifest\..*\.js$/
+    }),
     new ExtractTextPlugin('style.css'),
-    new ManifestPlugin(),
+    // new ManifestPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // new BundleAnalyzerPlugin(), // 分析依赖包
