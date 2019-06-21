@@ -26,6 +26,8 @@
     "dev": "node dev-server.js",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
+    "stats": "webpack --profile --json > stats.json",
+    "analyzer": "webpack-bundle-analyzer stats.json",
     "start": "node server.js"
   },
   "repository": {
