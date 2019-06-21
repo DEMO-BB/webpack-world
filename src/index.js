@@ -1,7 +1,14 @@
 import _ from 'lodash';
 import './style.css'
 import img from './assets/beth.png'
-import Data from './assets/data.xml';
+// import Data from './assets/data.xml';
+import printMe from './print.js';
+import { cube } from './math.js';
+
+console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Looks like we are in development mode!');
+}
 
 function component() {
   var element = document.createElement('div');
@@ -16,8 +23,28 @@ function component() {
   image.src = img
   element.appendChild(image)
 
-  console.log(Data);
+  // console.log(Data);
+
+  // 添加按钮
+  var btn = document.createElement('button');
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = printMe;
+  element.appendChild(btn);
+
+  // 添加一个模块
+  var element1 = document.createElement('pre');
+  element1.innerHTML = ['Hello webpack!', '5 cubed is equal to ' + cube(5)].join('\n\n');
+  element.appendChild(element1);
+
   return element;
 }
 
 document.body.appendChild(component());
+
+console.log(module.hot, 'module.hot')
+if (module.hot) {
+  module.hot.accept('./print.js', function() {
+    console.log('Acception the updated printMe module!');
+    printMe();
+  })
+}

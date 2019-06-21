@@ -1,4 +1,5 @@
 .hello {
   color: red;
-  background-image: url('./assets/beth.png');
+  /* background-image: url('./assets/beth.png'); */
+  /* background: #000000; */
 }
