@@ -2,7 +2,7 @@ import _ from 'lodash';
 import './style.css'
 import img from './assets/beth.png'
 // import Data from './assets/data.xml';
-import printMe from './print.js';
+// import printMe from './print.js';
 import { cube } from './math.js';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
@@ -21,14 +21,19 @@ function component() {
   // 将图像添加到div中
   var image = new Image()
   image.src = img
-  element.appendChild(image)
+  // element.appendChild(image)
 
   // console.log(Data);
 
   // 添加按钮
   var btn = document.createElement('button');
   btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
+  // btn.onclick = printMe;
+  btn.onclick = e => import('./print').then(module => {
+    var print = module.default;
+
+    print();
+  })
   element.appendChild(btn);
 
   // 添加一个模块

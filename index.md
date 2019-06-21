@@ -70,3 +70,24 @@ tree shaking 是一个术语，通常用于描述移除 JavaScript 上下文中�
 自动分离公共的代码，动态加载，只有引用到的时候才进行加载输出
 
 # bundle 分析(bundle analysis)
+通过代码分析，可以看到依赖包的大小依赖情况
+
+# 懒加载
+核心问题，就是异步出发的操作，可以等到点击操作的时候再进行加载处理。这个其实可以用在有很多交互操作的页面上。对于项目打包还是一个非常有意义的优化目标。
+
+# 缓存
+https://searchstorage.techtarget.com/definition/cache
+
+只要打包之后的项目部署到服务器上，客户端就能访问网站此服务器的资源。而最后一步获取资源是比较耗费时间的。浏览器有一种缓存技术，可以通过命中缓存，以降低网络流量，使网站加载速度更快。
+缓存的存在，当你需要获取新的代码时，就会有问题。
+Cannot use [chunkhash] or [contenthash] for chunk in '[name].[chunkhash].js' (use [hash] instead)
+
+更新一个文件之后，其他的文件不需要更新hash值，但是如果仅仅时添加manifest，就会出现其他的问题。
+添加这个：new webpack.HashedModuleIdsPlugin(),试试,有问题
+
+https://www.cnblogs.com/lalalagq/p/9809174.html
+
+# 问题解决
+* css打包
+* clean代码
+* hashedModuleIdsPlugin失效
