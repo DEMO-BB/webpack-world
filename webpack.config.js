@@ -60,6 +60,10 @@ module.exports = {
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'common' // 指定公共 bundle 的名称
     // }),
+    new webpack.ProvidePlugin({
+      // _: 'lodash'
+      join: ['lodash', 'join'],
+    })
   ],
   optimization: {
     namedChunks: true,

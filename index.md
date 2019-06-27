@@ -88,7 +88,7 @@ Cannot use [chunkhash] or [contenthash] for chunk in '[name].[chunkhash].js' (us
 https://www.cnblogs.com/lalalagq/p/9809174.html
 
 # 问题解决
-* css打包
+* css打包 ok
 * clean代码
 * hashedModuleIdsPlugin失效
 
@@ -100,3 +100,7 @@ webpack 4 的Code Splitting 它最大的特点就是配置简单，如果你的 
 按需加载 chunk 的并发请求数量小于等于 5 个
 页面初始加载时的并发请求数量小于等于 3 个
 https://www.jianshu.com/p/23dcabf35744
+
+# shimming
+我们不推荐使用全局的东西，但是如果有就需要使用shimming来进行处理。
+polyfill浏览器功能以支持更多用户时，在这种情况下，我们希望这鞋polifils提供给到需要修复的浏览器上，也就是实现按需加载
