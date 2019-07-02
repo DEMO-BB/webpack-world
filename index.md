@@ -129,3 +129,6 @@ babel-preset-env、babel-preset-es2015、babel-preset-es2016、babel-preset-es20
 babel-plugin-transform-runtime这个插件能够编译Object.assign,同时也可以引入babel-polyfill进一步对includes这类用法保证在浏览器的兼容性。Object.assign 会被编译成以下代码：__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()
 * jsx和flow插件，这类转译器用来转移jsx语法和移除类型生命，使用react的额时候你将使用他
 转译器名称为babel-preset-react
+
+# 没有用过的插件整理
+* new webpack.BannerPlugin({ banner: 'Banner , raw: true })

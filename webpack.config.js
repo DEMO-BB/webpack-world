@@ -99,6 +99,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    // new webpack.BannerPlugin({ banner: (yourVariable) => { console.log('yourVariable: ', yourVariable); return `yourVariable: ${yourVariable}`; } }),
+    new webpack.BannerPlugin({
+      banner: `filename: [name]\nauthor: beth\ndate: ${new Date()}`
+    }),
     new HtmlWebpackPlugin({
       // title: 'Code Splitting',
       // title: 'Caching',
