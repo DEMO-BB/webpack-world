@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": 57,
+        "browsers": ["last 2 versions", "safari 7", "> 1%", "IE 10"]
+      },
+      "modules": false,
+      "useBuiltIns": true,
+      "debug": true
+    }]
+  ],
+}

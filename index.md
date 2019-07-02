@@ -106,3 +106,26 @@ https://www.jianshu.com/p/23dcabf35744
 polyfill浏览器功能以支持更多用户时，在这种情况下，我们希望这些polifils提供给到需要修复的浏览器上，也就是实现按需加载
 
 一些传统的模块依赖的this指向的是widnwo对象。
+
+其他工具，还有一些其他工具能够帮助我们处理老旧的模块
+
+# 渐进式网络应用程序
+使用Workbox的Google项目来实现配置 web app 的离线支持
+这个板块需要专门研究一下，然后出一个可以针对项目快速构建PWA的插件
+
+# babel 转译器
+* 主要对预设 presets 和插件 plugins 进行配置
+* 语法转义，对js最新语法糖进行编译，并不负责转译js新增的api和全局对象
+babel-preset-env、babel-preset-es2015、babel-preset-es2016、babel-preset-es2017、babel-preset-latest等
+```
+{ // 官方推荐配置
+  "presets": ["env", {
+      "modules": false
+    }],
+    "stage-2"
+}
+```
+* 补丁转义器，主要负责转译js新增的api和全局对象
+babel-plugin-transform-runtime这个插件能够编译Object.assign,同时也可以引入babel-polyfill进一步对includes这类用法保证在浏览器的兼容性。Object.assign 会被编译成以下代码：__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_assign___default()
+* jsx和flow插件，这类转译器用来转移jsx语法和移除类型生命，使用react的额时候你将使用他
+转译器名称为babel-preset-react

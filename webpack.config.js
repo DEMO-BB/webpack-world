@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const commonOptions = {
   chunks: 'all',
@@ -35,6 +36,11 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /\.js$/,
+      //   enforce: "pre",
+      //   loader: 'eslint-loader'
+      // },
       // {
       //   test: /\.css$/,
       //   use: [
@@ -92,10 +98,11 @@ module.exports = {
     // webpack-dev-server --entry /entry/file --output-path /output/path --allowed-hosts .host.com,host2.com
   },
   plugins: [
-    // new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // title: 'Code Splitting',
-      title: 'Caching',
+      // title: 'Caching',
+      title: 'Progressive Web Application',
       meta: {
         favicon: 'https://admin.uskid.com/favicon.ico',
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
@@ -126,7 +133,14 @@ module.exports = {
     new webpack.ProvidePlugin({
       // _: 'lodash'
       join: ['lodash', 'join'],
-    })
+    }),
+    // todo workbox 依赖安装不上
+    // new WorkboxPlugin.GenerateSW({
+    //   // 这些选项帮助 ServiceWorkers 快速启动
+    //   // 不允许遗留任何“旧的” ServiceWorkers
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
   ],
   optimization: {
     namedChunks: true,

@@ -4,8 +4,9 @@ import img from './assets/beth.png'
 // import Data from './assets/data.xml';
 // import printMe from './print.js';
 import { cube } from './math.js';
+import data from '../package.json'
 
-console.log('process.env.NODE_ENV111', process.env.NODE_ENV)
+console.log('process.env.NODE_ENV111', process.env.NODE_ENV, data)
 if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development mode!');
 }
