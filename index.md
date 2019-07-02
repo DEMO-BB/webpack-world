@@ -103,4 +103,6 @@ https://www.jianshu.com/p/23dcabf35744
 
 # shimming
 我们不推荐使用全局的东西，但是如果有就需要使用shimming来进行处理。
-polyfill浏览器功能以支持更多用户时，在这种情况下，我们希望这鞋polifils提供给到需要修复的浏览器上，也就是实现按需加载
+polyfill浏览器功能以支持更多用户时，在这种情况下，我们希望这些polifils提供给到需要修复的浏览器上，也就是实现按需加载
+
+一些传统的模块依赖的this指向的是widnwo对象。

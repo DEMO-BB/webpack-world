@@ -13,6 +13,8 @@ if (process.env.NODE_ENV !== 'production') {
 function component() {
   var element = document.createElement('div');
 
+  // this.alert('hello shimming')
+
   // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
   // Lodash, now imported by this script
   element.innerHTML = join(['Hello', 'webpack'], ' ');
@@ -40,6 +42,14 @@ function component() {
   var element1 = document.createElement('pre');
   element1.innerHTML = ['Hello webpack!', '5 cubed is equal to ' + cube(5)].join('\n\n');
   element.appendChild(element1);
+
+  fetch('https://jsonplaceholder.typicode.com/users')
+   .then(response => response.json())
+   .then(json => {
+     console.log('We retrieved some data! AND we\'re confident it will work on a variety of browser distributions.')
+     console.log(json)
+   })
+   .catch(error => console.error('Something went wrong when fetching this data: ', error))
 
   return element;
 }

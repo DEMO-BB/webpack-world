@@ -18,10 +18,69 @@ module.exports = {
   // entry: './src/index.js',
   entry: {
     app: './src/index.js',
+    polyfills: './src/polyfills.js',
     // print: './src/print.js',
     // another: './src/another-module.js'
     // app: './src/dynamic.js',
     vendor: ['lodash'],
+  },
+  output: {
+    // filename: 'bundle.js',
+    // filename: '[name].bundle.js',
+    filename: '[name].[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    // 动态代码导入
+    // chunkFilename: '[name].bundle.js',
+  },
+  module: {
+    rules: [
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //   ]
+      // },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
+        ]
+      },
+      // {
+      //   // 处理其他文件格式的数据
+      //   test: /\.(csv|tsv)$/,
+      //   use: [ 'csv-loader' ]
+      // },
+      // {
+      //   test: /\.xml$/,
+      //   use: [ 'xml-loader' ]
+      // }
+      // {
+      //   // todo 有问题，不能打包处理成功
+      //   test: require.resolve('index.js'),
+      //   use: 'imports-loader?this=>window'
+      // },
+      // {
+      //   // 将一个文件导出到全局
+      //   test: require.resolve('globals.js'),
+      //   use: 'exports-loader?file,parse=helpers.parse'
+      // }
+    ]
   },
   devtool: 'inline-source-map', // 不要用于生产环境
   devServer: {
@@ -37,6 +96,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       // title: 'Code Splitting',
       title: 'Caching',
+      meta: {
+        favicon: 'https://admin.uskid.com/favicon.ico',
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+      },
     }),
     // 4之后已经删除，需要在optimization中设置 moduleIds: hashed,
     // new webpack.HashedModuleIdsPlugin({
@@ -93,53 +156,5 @@ module.exports = {
         },
       },
     }
-  },
-  output: {
-    // filename: 'bundle.js',
-    // filename: '[name].bundle.js',
-    filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    // 动态代码导入
-    // chunkFilename: '[name].bundle.js',
-  },
-  module: {
-    rules: [
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //   ]
-      // },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader'
-        ]
-      },
-      // {
-      //   // 处理其他文件格式的数据
-      //   test: /\.(csv|tsv)$/,
-      //   use: [ 'csv-loader' ]
-      // },
-      // {
-      //   test: /\.xml$/,
-      //   use: [ 'xml-loader' ]
-      // }
-    ]
   },
 };
